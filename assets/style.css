@@ -1,0 +1,50 @@
+@import url("https://use.typekit.net/qfe6cro.css");
+
+:root {
+	--font-size: 20px;
+	--color: rgb(243, 243, 243);
+
+	--gutter: calc(var(--font-size) * 2)
+}
+
+@media (min-width: 600px) {
+	:root {
+		--font-size: 22px;
+	}
+}
+
+body {
+	font-size: var(--font-size);
+	padding-top: calc(var(--gutter) * 3);
+	padding-right: var(--gutter);
+	padding-left: var(--gutter);
+	padding-bottom: calc(var(--gutter) * 2);
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--gutter);
+	justify-content: space-between;
+	height: 100vh;
+	background-color: #181818;
+	color: var(--color);
+	font-family: "peridot-pe-variable", sans-serif;
+}
+
+a {
+	color: rgb(204, 208, 223);
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: calc(var(--font-size) * 3);
+	font-variation-settings: "wght" 500;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: calc(var(--font-size) * 4);
+}
+
+footer {
+	font-size: calc(var(--font-size) * 0.75);
+	font-weight: 200;
+}
