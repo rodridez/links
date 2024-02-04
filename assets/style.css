@@ -48,3 +48,21 @@ footer {
 	font-size: calc(var(--font-size) * 0.75);
 	font-weight: 200;
 }
+
+/* Setting up the position of blocks */
+
+.content-block {
+	/* background-color: tomato; */
+	display: flex;
+	align-items: center;
+}
+
+.data {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	padding-top: 30%;
+	padding-left: calc(var(--gutter) * 0.5);
+	padding-bottom: calc(var(--gutter) * 0.5);
+}
