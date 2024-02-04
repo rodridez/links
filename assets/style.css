@@ -1,4 +1,5 @@
 @import url("https://use.typekit.net/qfe6cro.css");
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
 
 :root {
 	--font-size: 20px;
@@ -13,7 +14,7 @@
 body {
 	font-size: var(--font-size);
 	line-height: var(--line-height);
-	padding-top: calc(var(--gutter) * 3);
+	padding-top: calc(var(--gutter) * 1);
 	padding-right: var(--gutter);
 	padding-left: var(--gutter);
 	padding-bottom: calc(var(--gutter) * 2);
@@ -36,6 +37,7 @@ h1 {
 	line-height: calc(var(--line-height) * .7);
 	font-variation-settings: "wght" 500;
 	text-transform: uppercase;
+	padding-bottom: var(--gutter);
 }
 
 h2 {
@@ -58,15 +60,27 @@ img {
 	color: gray;
 }
 
+.text p {
+	font-family: 'Cutive Mono', monospace;
+	padding-top: calc(var(--gutter) * 2);
+	padding-bottom: calc(var(--gutter) * 2);
+	padding-left: var(--gutter);
+	padding-right: var(--gutter);
+}
+
 /* Setting up the position of blocks */
+
+/* test */
 
 .content-block {
 	margin-left: auto;
 	margin-right: auto;
-	width: 1400px;
-	height: 850px;
+	max-width: 1400px;
+	width: 100%;
+	height: auto;
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .image, .data, .link, .pdf, .text {
