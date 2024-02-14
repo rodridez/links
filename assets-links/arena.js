@@ -7,7 +7,8 @@ document.head.appendChild(markdownIt)
 
 
 // Okay, Are.na stuff!
-let channelSlug = 'typography-and-interaction-too' // The “slug” is just the end of the URL
+let channelSlug = 'expression-tiomb4ullm0' // The “slug” is just the end of the URL
+console.log('hi')
 
 
 
@@ -15,6 +16,7 @@ let channelSlug = 'typography-and-interaction-too' // The “slug” is just the
 let placeChannelInfo = (data) => {
 	// Target some elements in your HTML:
 	let channelTitle = document.getElementById('channel-title')
+	console.log(channelTitle)
 	let channelDescription = document.getElementById('channel-description')
 	let channelCount = document.getElementById('channel-count')
 	let channelLink = document.getElementById('channel-link')
@@ -44,8 +46,8 @@ let renderBlock = (block) => {
 					<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
 					<img src="${ block.image.original.url }">
 				</picture>
-				<h3>${ block.title }</h3>
-				${ block.description_html }
+				<h2>${ block.title }</h2>
+				<p class="description">${ block.description_html }</p>
 				<p><a href="${ block.source.url }">See the original ↗</a></p>
 			</li>
 			`
