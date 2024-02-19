@@ -37,40 +37,113 @@ let renderBlock = (block) => {
 
 	// Links!
 	if (block.class == 'Link') {
-		let linkItem =
+		// console.log(block)
+		//if (block.description_html.length > 5){
+			//console.log(block.description_html)
+			let linkItem =
 			`
-			<li>
-				<p><em>Link</em></p>
-				<picture>
-					<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
-					<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
-					<img src="${ block.image.original.url }">
-				</picture>
-				<h2>${ block.title }</h2>
-				<p class="description">${ block.description_html }</p>
-				<p><a href="${ block.source.url }">See the original ↗</a></p>
+			<li class="content-block">
+				<div class="link"> 
+					<picture>
+						<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
+						<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
+						<img src="${ block.image.original.url }">
+					</picture>
+				</div>
+				<div class="data">
+					<p><em>Link</em></p>
+					<h2 class="h2-long">${ block.title }</h2>
+					<div class="description">${ block.description_html }</div>
+					<p><a href="${ block.source.url }" target="blank">See the original ↗</a></p>
+				</div>
 			</li>
 			`
-		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
+			channelBlocks.insertAdjacentHTML('beforeend', linkItem)
+		//}
+
+		// else {
+		// 	let linkItem =
+		// 	`
+		// 	<li class="content-block">
+		// 		<div class="link"> 
+		// 			<picture>
+		// 				<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
+		// 				<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
+		// 				<img src="${ block.image.original.url }">
+		// 			</picture>
+		// 		</div>
+		// 		<div class="data">
+		// 			<p><em>Link</em></p>
+		// 			<h2>${ block.title }</h2>
+		// 			<p class="description">${ block.description_html }</p>
+		// 			<p><a href="${ block.source.url }" target="blank">See the original ↗</a></p>
+		// 		</div>
+		// 	</li>
+		// 	`
+		// channelBlocks.insertAdjacentHTML('beforeend', linkItem)
+		// }
+
+		
 	}
 
 	// Images!
 	else if (block.class == 'Image') {
-		// …up to you!
+		// console.log(block)
+		let imageItem =
+			`
+			<li class="content-block">
+				<div class="image"> 
+					<picture>
+						<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
+						<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
+						<img src="${ block.image.original.url }">
+					</picture>
+				</div>
+				<div class="data">
+					<p><em>Image</em></p>
+					<h2>${ block.title }</h2>
+					<p class="description">${ block.description_html }</p>
+				</div>
+			</li>
+			`
+    	channelBlocks.insertAdjacentHTML('beforeend', imageItem)
+
+		// let insertedP = channelBlocks.querySelector('.content-block:last-child .description');
+		// if (block.description_html === 'null') {
+		// 	console.log(block)
+		// 	insertedP.classList.add('test');
+		// }
+
 	}
 
 	// Text!
 	else if (block.class == 'Text') {
-		// …up to you!
+		// console.log(block)
+		let textItem =
+			`
+			<li class="content-block">
+			<div class="text"> 
+				<p>${ block.content_html }</p>
+			</div>
+			<div class="data">
+				<p><em>Text</em></p>
+				<h2>${ block.title }</h2>
+				<p class="description">${ block.description_html }</p>
+			</div>
+			</li>
+			`
+		channelBlocks.insertAdjacentHTML('beforeend', textItem)
 	}
 
 	// Uploaded (not linked) media…
 	else if (block.class == 'Attachment') {
 		let attachment = block.attachment.content_type // Save us some repetition
+		// console.log(block)
 
 		// Uploaded videos!
 		if (attachment.includes('video')) {
 			// …still up to you, but we’ll give you the `video` element:
+			
 			let videoItem =
 				`
 				<li>
@@ -85,7 +158,25 @@ let renderBlock = (block) => {
 
 		// Uploaded PDFs!
 		else if (attachment.includes('pdf')) {
-			// …up to you!
+			let pdfItem =
+				`
+				<li class="content-block">
+					<div class="image"> 
+						<picture>
+							<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
+							<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
+							<img src="${ block.image.original.url }">
+						</picture>
+					</div>
+					<div class="data">
+						<p><em>PDF</em></p>
+						<h2>${ block.title }</h2>
+						<p class="description">${ block.description_html }</p>
+						<p><a href="${ block.source.url }" target="blank">See the original ↗</a></p>
+					</div>
+				</li>
+				`
+			channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
 		}
 
 		// Uploaded audio!
@@ -95,7 +186,7 @@ let renderBlock = (block) => {
 				`
 				<li>
 					<p><em>Audio</em></p>
-					<audio controls src="${ block.attachment.url }"></video>
+					<audio controls src="${ block.attachment.url }"></audio>
 				</li>
 				`
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
@@ -156,10 +247,61 @@ fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-stor
 		data.contents.reverse().forEach((block) => {
 			// console.log(block) // The data for a single block
 			renderBlock(block) // Pass the single block data to the render function
+
+
+			// insert HERE INSTEAD
+			
+			//Trying to select H2 ASK PROFESSORS WHY IS NOT WOTKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			let allH2s = document.querySelectorAll('h2')
+			//console.log(allH2s)
+
+			allH2s.forEach((currentH2) => {
+
+				if (currentH2.textContent.length > 52) 
+				{
+					currentH2.classList.add('h2-long2')
+				} 
+				else if (currentH2.textContent.length >= 14) 
+				{
+					currentH2.classList.add('h2-long')
+				} 
+				else if (currentH2.textContent.length < 1)
+				{
+					currentH2.innerHTML = '<span>EXPRESSION.EXPRESSSIONN.EXXPRESSSSIONNN-EXPRESSION.</span>'
+				}
+				else 
+				{
+					currentH2.classList.remove('h2-long')
+				}
+			})
+
+			//Ok lets try this again... Now I wanna grab descriptions
+			let allDescriptions = document.querySelectorAll('.description')
+			//console.log(allDescriptions)
+
+			allDescriptions.forEach((currentDescription) => {
+				if (currentDescription.textContent.length < 1)
+				{
+					currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
+				}
+
+				else {}
+			})
+
+
+
 		})
 
 		// Also display the owner and collaborators:
 		let channelUsers = document.getElementById('channel-users') // Show them together
 		data.collaborators.forEach((collaborator) => renderUser(collaborator, channelUsers))
 		renderUser(data.user, channelUsers)
+		
+
+
+
+	
+
+		
 	})
+
