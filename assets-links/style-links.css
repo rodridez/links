@@ -1,6 +1,7 @@
 @import url("https://use.typekit.net/qfe6cro.css");
 @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
 
+/* adding my root elements */
 :root {
 	--font-size: 18px;
 	--line-height: 125%;
@@ -9,6 +10,7 @@
 	--gutter: calc(var(--font-size) * 2)
 }
 
+/* Major selections for the whole body and seeting up some basic styles */
 body {
 	font-size: var(--font-size);
 	line-height: var(--line-height);
@@ -25,19 +27,41 @@ body {
 	font-family: "peridot-pe-variable", sans-serif;
 }
 
+header {
+    margin-top: 65vh;
+	padding-right: var(--gutter);
+	padding-left: var(--gutter);
+}
+
+header p {
+	font-size: calc(var(--font-size) * 1.5);
+	padding-bottom: var(--gutter);
+	padding-left: 8px;
+}
+
 a {
 	color: rgb(204, 208, 223);
 	text-decoration: underline;
 }
 
 h1 {
-	font-size: calc(var(--font-size) * 4);
+	font-size: calc(var(--font-size) * 8);
 	line-height: calc(var(--line-height) * .7);
 	font-variation-settings: "wght" 500;
 	text-transform: uppercase;
 	padding-bottom: var(--gutter);
 }
 
+em {
+	color: rgb(170, 170, 170);
+}
+
+footer {
+	font-size: calc(var(--font-size) * 0.75);
+	font-weight: 200;
+}
+
+/* Here I set up all the different H2s that are expected to show up in the website pulled from Are.na */
 h2 {
 	font-size: calc(var(--font-size) * 4);
 	line-height: calc(var(--line-height) * .7);
@@ -55,40 +79,11 @@ h2 {
 	word-break: break-all;
 }
 
-em {
-	color: rgb(170, 170, 170);
-}
-
-footer {
-	font-size: calc(var(--font-size) * 0.75);
-	font-weight: 200;
-}
-
-.content-block img {
-	object-fit: cover;
-}
-
-.type {
-	text-transform: uppercase;
-	color: gray;
-}
-
-.text p {
-	font-family: 'Cutive Mono', monospace;
-	font-size: calc(var(--font-size)*2);
-	line-height: var(--line-height);
-	padding-top: calc(var(--gutter) * 2);
-	padding-bottom: calc(var(--gutter) * 2);
-	padding-left: var(--gutter);
-	padding-right: var(--gutter);
-}
 
 
+/* This seeting up the text style for the Are.na text items */
 
 /* Setting up the position of blocks */
-
-/* test */
-
 .content-block {
 	margin-left: auto;
 	margin-right: auto;
@@ -104,12 +99,51 @@ footer {
 	width: 50%;
 }
 
+.type {
+	text-transform: uppercase;
+	color: gray;
+}
+
+/* Setting up the style for the type:TEXT */
+.text p, .text em {
+	font-family: 'Cutive Mono', monospace;
+	font-size: calc(var(--font-size)* 1.5);
+	line-height: var(--line-height);
+	padding-bottom: calc(var(--gutter) * 1);
+	padding-left: var(--gutter);
+
+	color: crimson;
+}
+
+/* This is trying to contain texts that are too long inside of a box */
+.text {
+	height: 80vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+}
+
+/* Setting up the style for the type:IMAGE*/
 .image {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+picture {
+    width: 100%;
+    height: 100%;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Here is the settings for the info items inside of eeach block */
 li {
 	margin-bottom: calc(var(--gutter) * 4);
 }
@@ -129,11 +163,18 @@ li.content-block {
 
 .data p {
 	padding-bottom: var(--gutter);
+	font-size: calc(var(--font-size)* 1.2);
+	line-height: calc(var(--line-height)* 1.2);
+	font-weight: 100;
+	color: rgb(172, 172, 172);
 }
 
 .description {
 	padding-top: var(--gutter);
 }
+
+
+/* Here is the setting for different screens */
 
 @media (max-width: 600px) {
 	:root {
