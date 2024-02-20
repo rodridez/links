@@ -106,7 +106,7 @@ let renderBlock = (block) => {
 				</div>
 			</li>
 			`
-    	channelBlocks.insertAdjacentHTML('beforeend', imageItem)
+		channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 
 		// let insertedP = channelBlocks.querySelector('.content-block:last-child .description');
 		// if (block.description_html === 'null') {
@@ -226,7 +226,7 @@ let renderUser = (user, container) => { // You can have multiple arguments for a
 	let userAddress =
 		`
 		<address>
-			<img src="${ user.avatar_image.display }">
+		<!-- <img src="${ user.avatar_image.display }"> --!>
 			<h3>${ user.first_name }</h3>
 			<p><a href="https://are.na/${ user.slug }">Are.na profile ↗</a></p>
 		</address>
@@ -235,6 +235,96 @@ let renderUser = (user, container) => { // You can have multiple arguments for a
 }
 
 
+
+//Trying to select H2 ASK PROFESSORS WHY IS NOT WOTKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let fixingBlocksContent = () => {
+
+	let allH2s = document.querySelectorAll('h2')
+	//console.log(allH2s)
+
+	allH2s.forEach((currentH2) => {
+
+		if (currentH2.textContent.length > 52) 
+		{
+			currentH2.classList.add('h2-long2')
+		} 
+		else if (currentH2.textContent.length >= 14) 
+		{
+			currentH2.classList.add('h2-long')
+		} 
+		else if (currentH2.textContent.length < 1)
+		{
+			currentH2.innerHTML = '<h2 class="h2-long">EXPRESSION.EXPRESSSIONN.EXXPRESSSSIONNN-EXPRESSION.</h2>'
+		}
+		else 
+		{
+			currentH2.classList.remove('h2-long')
+		}
+	})
+
+	//Ok lets try this again... Now I wanna grab descriptions
+	let allDescriptions = document.querySelectorAll('.description')
+	//console.log(allDescriptions)
+
+	allDescriptions.forEach((currentDescription) => {
+		if (currentDescription.textContent.length < 1)
+		{
+			currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
+		}
+
+		else {}
+	})
+
+}
+
+
+// function for the "snap scroll"
+let scrollingSlideShow = () => {
+	let allLis = document.querySelectorAll('li')
+	console.log('Lists Here:', allLis)
+	
+	allLis.forEach((li) => {
+		let sectionObserver = new IntersectionObserver ((entries) => {
+			let [entry] = entries
+
+			if (entry.isIntersecting) 
+			{
+				const scrollY = entry.target.offsetTop + (entry.target.offsetHeight / 2) - (window.innerHeight / 2) // this one is getting the li hieght and dividing it 
+				window.scrollTo({ top: scrollY, behavior: 'smooth' }) // this is making it scroll to that place
+			}
+			else {}
+		})
+
+		sectionObserver.observe(li) 
+	})
+
+}
+
+	// let options = {
+	// 	root: null,
+	// 	rootMargin: '0px',
+	// 	threshold: 0.5, 
+	// };
+
+	// let callback = (entries, observer) => {
+	// 	entries.forEach(entry => {
+	// 		if (entry.isIntersecting) {
+	// 			// Scroll to the middle of the content of the current <li>
+	// 			const liContent = entry.target.querySelector('.data') // Adjust the selector based on your structure
+	// 			const scrollY = liContent.offsetTop - (window.innerHeight / 3)
+	// 			window.scrollTo({ top: scrollY, behavior: 'smooth' })
+
+	// 			observer.unobserve(entry.target)
+	// 		}
+	// 	})
+	// }
+
+	// let sectionObserver = new IntersectionObserver(callback, options)
+
+	// allLis.forEach(li => {
+	// 	sectionObserver.observe(li)
+	// })
+// }
 
 // Now that we have said what we can do, go get the data:
 fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-store' })
@@ -247,49 +337,6 @@ fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-stor
 		data.contents.reverse().forEach((block) => {
 			// console.log(block) // The data for a single block
 			renderBlock(block) // Pass the single block data to the render function
-
-
-			// insert HERE INSTEAD
-			
-			//Trying to select H2 ASK PROFESSORS WHY IS NOT WOTKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			let allH2s = document.querySelectorAll('h2')
-			//console.log(allH2s)
-
-			allH2s.forEach((currentH2) => {
-
-				if (currentH2.textContent.length > 52) 
-				{
-					currentH2.classList.add('h2-long2')
-				} 
-				else if (currentH2.textContent.length >= 14) 
-				{
-					currentH2.classList.add('h2-long')
-				} 
-				else if (currentH2.textContent.length < 1)
-				{
-					currentH2.innerHTML = '<span>EXPRESSION.EXPRESSSIONN.EXXPRESSSSIONNN-EXPRESSION.</span>'
-				}
-				else 
-				{
-					currentH2.classList.remove('h2-long')
-				}
-			})
-
-			//Ok lets try this again... Now I wanna grab descriptions
-			let allDescriptions = document.querySelectorAll('.description')
-			//console.log(allDescriptions)
-
-			allDescriptions.forEach((currentDescription) => {
-				if (currentDescription.textContent.length < 1)
-				{
-					currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
-				}
-
-				else {}
-			})
-
-
-
 		})
 
 		// Also display the owner and collaborators:
@@ -297,7 +344,9 @@ fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-stor
 		data.collaborators.forEach((collaborator) => renderUser(collaborator, channelUsers))
 		renderUser(data.user, channelUsers)
 		
-
+		//my added functions here:
+		fixingBlocksContent();
+		scrollingSlideShow();
 
 
 	
