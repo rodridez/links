@@ -300,31 +300,21 @@ let scrollingSlideShow = () => {
 
 }
 
-	// let options = {
-	// 	root: null,
-	// 	rootMargin: '0px',
-	// 	threshold: 0.5, 
-	// };
+//function to make everything glitch
+let scrollingGlitch = () => {
+	//let grabBody = document.querySelector('body')
+    let sectionGrab = document.querySelectorAll('section')
 
-	// let callback = (entries, observer) => {
-	// 	entries.forEach(entry => {
-	// 		if (entry.isIntersecting) {
-	// 			// Scroll to the middle of the content of the current <li>
-	// 			const liContent = entry.target.querySelector('.data') // Adjust the selector based on your structure
-	// 			const scrollY = liContent.offsetTop - (window.innerHeight / 3)
-	// 			window.scrollTo({ top: scrollY, behavior: 'smooth' })
+	window.onscroll = (event) => {
+		sectionGrab.forEach(section => {
+			section.classList.add('glitch');
 
-	// 			observer.unobserve(entry.target)
-	// 		}
-	// 	})
-	// }
-
-	// let sectionObserver = new IntersectionObserver(callback, options)
-
-	// allLis.forEach(li => {
-	// 	sectionObserver.observe(li)
-	// })
-// }
+		setTimeout(() => {
+			section.classList.remove('glitch')
+		})
+	})
+	}	
+}
 
 // Now that we have said what we can do, go get the data:
 fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-store' })
@@ -347,6 +337,7 @@ fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-stor
 		//my added functions here:
 		fixingBlocksContent();
 		scrollingSlideShow();
+		scrollingGlitch();
 
 
 	
