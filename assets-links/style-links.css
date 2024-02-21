@@ -138,6 +138,10 @@ picture {
     height: 100%;
 }
 
+picture img {
+	max-height: 85vh;
+}
+
 .image img {
     width: 100%;
     height: 100%;
@@ -165,7 +169,7 @@ li.content-block {
 
 .data p {
 	padding-bottom: var(--gutter);
-	font-size: calc(var(--font-size)* 1.2);
+	font-size: calc(var(--font-size)* 0.9);
 	line-height: calc(var(--line-height)* 1.2);
 	font-weight: 100;
 	color: rgb(172, 172, 172);
@@ -229,7 +233,7 @@ li.content-block {
 	width: 100vw;
 	z-index: -10000;
 	mix-blend-mode: overlay;
-	opacity: 50%;
+	opacity: 70%;
 }
 
 .noise img {
