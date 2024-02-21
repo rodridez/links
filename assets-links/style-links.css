@@ -221,6 +221,23 @@ li.content-block {
 	}
 }
 
+.noise {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: -10000;
+	mix-blend-mode: overlay;
+	opacity: 50%;
+}
+
+.noise img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	
+}
 /* h2 {
 	animation: glitch 1s linear infinite;
   }
