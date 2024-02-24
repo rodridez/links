@@ -38,8 +38,7 @@ let renderBlock = (block) => {
 	// Links!
 	if (block.class == 'Link') {
 		// console.log(block)
-		//if (block.description_html.length > 5){
-			//console.log(block.description_html)
+
 			let linkItem =
 			`
 			<li class="content-block">
@@ -59,30 +58,6 @@ let renderBlock = (block) => {
 			</li>
 			`
 			channelBlocks.insertAdjacentHTML('beforeend', linkItem)
-		//}
-
-		// else {
-		// 	let linkItem =
-		// 	`
-		// 	<li class="content-block">
-		// 		<div class="link"> 
-		// 			<picture>
-		// 				<source media="(max-width: 428px)" srcset="${ block.image.thumb.url }">
-		// 				<source media="(max-width: 640px)" srcset="${ block.image.large.url }">
-		// 				<img src="${ block.image.original.url }">
-		// 			</picture>
-		// 		</div>
-		// 		<div class="data">
-		// 			<p><em>Link</em></p>
-		// 			<h2>${ block.title }</h2>
-		// 			<p class="description">${ block.description_html }</p>
-		// 			<p><a href="${ block.source.url }" target="blank">See the original ↗</a></p>
-		// 		</div>
-		// 	</li>
-		// 	`
-		// channelBlocks.insertAdjacentHTML('beforeend', linkItem)
-		// }
-
 		
 	}
 
@@ -255,6 +230,7 @@ let fixingBlocksContent = () => {
 		else if (currentH2.textContent.length < 1)
 		{
 			currentH2.innerHTML = '<h2 class="h2-long">EXPRESSION.EXPRESSSIONN.EXXPRESSSSIONNN-EXPRESSION.</h2>'
+			currentH2.classList.add('fakeText');
 		}
 		else 
 		{
@@ -270,6 +246,7 @@ let fixingBlocksContent = () => {
 		if (currentDescription.textContent.length < 1)
 		{
 			currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
+			currentDescription.classList.add('fakeText');
 		}
 
 		else {}
