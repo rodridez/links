@@ -83,11 +83,7 @@ let renderBlock = (block) => {
 			`
 		channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 
-		// let insertedP = channelBlocks.querySelector('.content-block:last-child .description');
-		// if (block.description_html === 'null') {
-		// 	console.log(block)
-		// 	insertedP.classList.add('test');
-		// }
+
 
 	}
 
@@ -202,8 +198,9 @@ let renderUser = (user, container) => { // You can have multiple arguments for a
 		`
 		<address>
 		<!-- <img src="${ user.avatar_image.display }"> --!>
-			<h3>${ user.first_name }</h3>
-			<p><a href="https://are.na/${ user.slug }">Are.na profile ↗</a></p>
+		<div class="authors">
+			<p>${ user.first_name }  —  <a href="https://are.na/${ user.slug }">Dive into Are.na ↗</a></p>
+		</div>
 		</address>
 		`
 	container.insertAdjacentHTML('beforeend', userAddress)
@@ -211,7 +208,7 @@ let renderUser = (user, container) => { // You can have multiple arguments for a
 
 
 
-//Trying to select H2 ASK PROFESSORS WHY IS NOT WOTKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//Changing H2s depending on lenght of h2
 let fixingBlocksContent = () => {
 
 	let allH2s = document.querySelectorAll('h2')
@@ -230,7 +227,7 @@ let fixingBlocksContent = () => {
 		else if (currentH2.textContent.length < 1)
 		{
 			currentH2.innerHTML = '<h2 class="h2-long">EXPRESSION.EXPRESSSIONN.EXXPRESSSSIONNN-EXPRESSION.</h2>'
-			currentH2.classList.add('fakeText');
+			currentH2.classList.add('fakeText')
 		}
 		else 
 		{
@@ -238,7 +235,7 @@ let fixingBlocksContent = () => {
 		}
 	})
 
-	//Ok lets try this again... Now I wanna grab descriptions
+	//Now I wanna grab descriptions
 	let allDescriptions = document.querySelectorAll('.description')
 	//console.log(allDescriptions)
 
@@ -246,7 +243,13 @@ let fixingBlocksContent = () => {
 		if (currentDescription.textContent.length < 1)
 		{
 			currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
-			currentDescription.classList.add('fakeText');
+			currentDescription.classList.add('fakeText')
+		}
+
+		if (currentDescription.textContent === "null")
+		{
+			currentDescription.innerHTML = "<span>error.rror.ror.or.r error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r error.rror.ror.or.r-- error.rror.ror.or.r- error.rror.ror.or.r error.rror.ror.or.r--  </span>"
+			currentDescription.classList.add('fakeText')
 		}
 
 		else {}
@@ -254,6 +257,22 @@ let fixingBlocksContent = () => {
 
 }
 
+// Trying to change the layout on images, but not working :// 
+let imageLayoutReverse = () => {
+	let allLis = document.querySelectorAll('.content-block')
+
+	for (let i = 1; i < allLis.length; i++) {
+		let firstDivImage = allLis[i].querySelector('.image img')
+		let previousDivImage = allLis[i - 1].querySelector('.image img')
+
+		if (firstDivImage && previousDivImage && firstDivImage.src === previousDivImage.src) {
+			console.log('Two images in a row!')
+   
+			let parentOfSecondImage = allLis[i].parentNode
+			parentOfSecondImage.classList.add('content-block-reverse')
+		}
+	}
+}
 
 // function for the "snap scroll"
 let scrollingSlideShow = () => {
@@ -264,7 +283,7 @@ let scrollingSlideShow = () => {
 		let sectionObserver = new IntersectionObserver ((entries) => {
 			let [entry] = entries
 
-			if (entry.isIntersecting) 
+			if (entry.isIntersecting && !isScrolling) 
 			{
 				const scrollY = entry.target.offsetTop + (entry.target.offsetHeight / 2) - (window.innerHeight / 2) // this one is getting the li hieght and dividing it 
 				window.scrollTo({ top: scrollY, behavior: 'smooth' }) // this is making it scroll to that place
@@ -277,26 +296,77 @@ let scrollingSlideShow = () => {
 
 }
 
+//trying to make a scroll to top fucntion
+
+let isScrolling = false //creating a checker for scrool, so the scrools stop conflicting
+
+let scrollToTopButton = document.querySelector('nav a[href="#allTheWayUp"]')
+let scrollDown = document.querySelector('nav a[href="#bottom"]')
+
+scrollToTopButton.onclick = () => {
+	isScrolling = true	
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	})
+}
+
+scrollDown.onclick = () => {
+
+	let scrollAmount = 600
+
+	window.scrollTo({
+		top: window.scrollY + scrollAmount,
+		behavior: 'smooth'
+	})
+}
+
+//resetting the scroll
+window.addEventListener('scroll', () => {
+	if (isScrolling && window.scrollY === 0) {
+		isScrolling = false
+	}
+})
+
+
+
 //function to make everything glitch
 let scrollingGlitch = () => {
 	//let grabBody = document.querySelector('body')
-    let sectionGrab = document.querySelectorAll('section')
+	let sectionGrab = document.querySelectorAll('section')
 	let sectionGrab2 = document.querySelectorAll('h2')
+	let sectionGrab3 = document.querySelectorAll('.noise')
+	let sectionGrab4 = document.querySelectorAll('.navMenu')
 
 	window.onscroll = () => {
 		sectionGrab.forEach(section => {
-			section.classList.add('glitch');
+			section.classList.add('glitch')
 
 		setTimeout(() => {
 			section.classList.remove('glitch')
 		})
 	})
 		sectionGrab2.forEach(section => {
-			section.classList.add('glitch');
+			section.classList.add('glitch')
 
 		setTimeout(() => {
 			section.classList.remove('glitch')
 		})
+	})
+		sectionGrab3.forEach(section => {
+			section.classList.add('noise-scroll')
+
+		setTimeout(() => {
+			section.classList.remove('noise-scroll')
+		})
+	})
+		sectionGrab4.forEach(section => {
+			section.classList.add('glitch')
+
+		setTimeout(() => {
+			section.classList.remove('glitch')
+		})
+	})
 	}	
 }
 
@@ -322,6 +392,8 @@ fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-stor
 		fixingBlocksContent();
 		scrollingSlideShow();
 		scrollingGlitch();
+		imageLayoutReverse();
+
 
 
 	
