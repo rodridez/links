@@ -22,7 +22,7 @@ body {
 	flex-direction: column;
 	row-gap: var(--gutter);
 	justify-content: space-between;
-	background-color: #181818;
+	background-color: #000000;
 	color: var(--color);
 	font-family: "peridot-pe-variable", sans-serif;
 }
@@ -55,6 +55,7 @@ h1 {
 	font-variation-settings: "wght" 500;
 	text-transform: uppercase;
 	padding-bottom: var(--gutter);
+	word-break: break-all;
 }
 
 p em {
@@ -75,6 +76,7 @@ h2 {
 	font-size: calc(var(--font-size) * 4);
 	line-height: calc(var(--line-height) * .7);
 	text-transform: uppercase;
+	word-break: break-all;
 }
 
 .h2-long {
@@ -263,7 +265,7 @@ li.content-block {
 		/* background-color: tomato; */
 	}
 
-	.content-block {
+	.content-blocks {
 		height: auto;
 		width: auto;
 		display: flex;

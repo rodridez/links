@@ -281,8 +281,9 @@ let scrollingSlideShow = () => {
 let scrollingGlitch = () => {
 	//let grabBody = document.querySelector('body')
     let sectionGrab = document.querySelectorAll('section')
+	let sectionGrab2 = document.querySelectorAll('h2')
 
-	window.onscroll = (event) => {
+	window.onscroll = () => {
 		sectionGrab.forEach(section => {
 			section.classList.add('glitch');
 
@@ -290,6 +291,12 @@ let scrollingGlitch = () => {
 			section.classList.remove('glitch')
 		})
 	})
+		sectionGrab2.forEach(section => {
+			section.classList.add('glitch');
+
+		setTimeout(() => {
+			section.classList.remove('glitch')
+		})
 	}	
 }
 
