@@ -418,10 +418,68 @@ picture img {
     object-fit: cover;
 }
 
+.link-a {
+	font-size: calc(var(--font-size) * .7);
+	color: rgb(170, 170, 170);
+	text-transform: uppercase;
+	padding-left: 4px;
+	letter-spacing: 2px;
+	opacity: 50%;
+}
+
+.video {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.video p {
+	text-align: center;
+	margin-bottom: calc(var(--gutter)*.5);
+	margin-top: calc(var(--gutter)*.5);
+}
+
+.video iframe {
+	width: 100%;
+}
+
+.video a {
+	opacity: 50%;
+}
+
+.audio {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+
+.audio p {
+	text-align: center;
+	margin-bottom: calc(var(--gutter)*.5);
+	margin-top: calc(var(--gutter)*.5);
+}
+
+.audio iframe{
+	margin: auto;
+}
+
+.audio img{
+	    /* display: inline; */
+		position: absolute;
+		/* margin: auto; */
+		align-items: center;
+		width: 50%;
+		z-index: -1;
+		/* margin-left: 25%; */
+		margin-top: -15%;
+		opacity: 50%;
+}
 
 /* Here is the settings for the info items inside of eeach block */
 li {
-	margin-bottom: calc(var(--gutter) * 4);
+	margin-bottom: calc(var(--gutter) * 2);
+	/* margin-top: calc(var(--gutter) * 2); */
 }
 
 li.content-block {

@@ -53,7 +53,7 @@ let renderBlock = (block) => {
 					<p><em>Link</em></p>
 					<h2 class="h2-long">${ block.title }</h2>
 					<div class="description">${ block.description_html }</div>
-					<p><a href="${ block.source.url }" target="blank">See the original ↗</a></p>
+					<p><a class="link-a" href="${ block.source.url }" target="blank">See the original ↗</a></p>
 				</div>
 			</li>
 			`
@@ -113,13 +113,17 @@ let renderBlock = (block) => {
 
 		// Uploaded videos!
 		if (attachment.includes('video')) {
+			console.log('Attached video: ', block)
 			// …still up to you, but we’ll give you the `video` element:
 			
 			let videoItem =
 				`
-				<li>
+				<li class="content-block">
+				<div class="video">
 					<p><em>Video</em></p>
 					<video controls src="${ block.attachment.url }"></video>
+					<p><em><a href="${ block.source.url }" target="blank">Watch original ↗</a></em></p>
+				</div>
 				</li>
 				`
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
@@ -167,6 +171,7 @@ let renderBlock = (block) => {
 
 	// Linked media…
 	else if (block.class == 'Media') {
+		console.log(block)
 		let embed = block.embed.type
 
 		// Linked video!
@@ -174,9 +179,12 @@ let renderBlock = (block) => {
 			// …still up to you, but here’s an example `iframe` element:
 			let linkedVideoItem =
 				`
-				<li>
-					<p><em>Linked Video</em></p>
+				<li class="content-block">
+				<div class="video">
+					<p><em>Video</em></p>
 					${ block.embed.html }
+					<p><em><a href="${ block.source.url }" target="blank">Watch original ↗</a></em></p>
+				</div>
 				</li>
 				`
 			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
@@ -186,6 +194,19 @@ let renderBlock = (block) => {
 		// Linked audio!
 		else if (embed.includes('rich')) {
 			// …up to you!
+
+			let linkedAudioItem = 
+			`
+			<li class="content-block">
+			<div class="audio">
+				<p><em>Audio</em></p>
+				${ block.embed.html }
+				<img src="${ block.image.original.url }">
+				<p><em><a href="${ block.source.url }" target="blank">Listem ↗</a></em></p>
+			</div>
+			</li>
+			`
+		channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
 		}
 	}
 }
