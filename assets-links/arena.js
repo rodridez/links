@@ -257,22 +257,24 @@ let fixingBlocksContent = () => {
 
 }
 
-// Trying to change the layout on images, but not working :// 
-let imageLayoutReverse = () => {
-	let allLis = document.querySelectorAll('.content-block')
-
-	for (let i = 1; i < allLis.length; i++) {
-		let firstDivImage = allLis[i].querySelector('.image img')
-		let previousDivImage = allLis[i - 1].querySelector('.image img')
-
-		if (firstDivImage && previousDivImage && firstDivImage.src === previousDivImage.src) {
-			console.log('Two images in a row!')
-   
-			let parentOfSecondImage = allLis[i].parentNode
-			parentOfSecondImage.classList.add('content-block-reverse')
+// Trying to change the layout on images
+	let imageLayoutReverse = () => {
+		let allLis = document.querySelectorAll('li') //I'm selecting all <li>
+	
+		for (let i = 1; i < allLis.length; i++) { //this basically creates a locqal variable sets it to 1 and keep adding until it reaches the size of the list
+			let currentChildren = allLis[i].children //creates a variable to select the current <li> children
+			let previousChildren = allLis[i - 1].children //creates a variable to check the previous <li> children
+	
+			let currentHasImage = Array.from(currentChildren).some(child => child.classList.contains('image')) //this is how you check for the children that has the .image class
+			let previousHasImage = Array.from(previousChildren).some(child => child.classList.contains('image'))
+	
+			if (currentHasImage && previousHasImage) { //checks to see if current <li> and previous <li> had the .image
+				console.log('Two images in a row!')
+	
+				allLis[i].classList.add('content-block-reverse') //yay apply the content-block-reverse to the current <li>
+			}
 		}
-	}
-}
+	};
 
 // function for the "snap scroll"
 let scrollingSlideShow = () => {

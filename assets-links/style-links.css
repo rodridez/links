@@ -445,6 +445,10 @@ li.content-block {
 	color: rgb(172, 172, 172);
 }
 
+.content-block-reverse .data {
+	padding-right: calc(var(--gutter) * 1.5)
+}
+
 .description {
 	padding-top: var(--gutter);
 }
