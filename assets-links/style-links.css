@@ -680,13 +680,16 @@ li.content-block {
 	}
 
 	footer {
-		top: 10px;
+		top: 0px;
 		right: 0;
 		left: 0;
 		color: gray;
 		width: 100vw;
 		height: 3vh;
+		padding-top: 10px;
+		padding-bottom: 25px;
 		justify-content: center;
+		justify-content: space-around;
 		transform: rotate(0deg);
 		border-bottom: solid;
 		border-width: 1px;
@@ -696,7 +699,7 @@ li.content-block {
 
 	nav {
 		transform: rotate(0deg);
-		bottom: 10px;
+		bottom: 0px;
 		justify-content: center;
 		right: 0;
 		left: 0;
@@ -706,6 +709,7 @@ li.content-block {
 		border-top: solid;
 		border-width: 1px;
 		padding-top: 10px;
+		padding-bottom: 10px;
 		background-color: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(2px);
 	}
@@ -715,6 +719,19 @@ li.content-block {
 	}
 
 }
+
+@media (max-width: 475px) {
+
+	footer {
+		height: 5vh;
+	}
+
+	.hide {
+		display: none;
+	}
+
+}
+
 
 @media (max-width: 425px) {
 
