@@ -674,6 +674,42 @@ li.content-block {
 		flex-direction: column;
 		align-items: flex-start;
 	}
+
+	footer {
+		top: 10px;
+		right: 0;
+		left: 0;
+		color: gray;
+		width: 100vw;
+		height: 3vh;
+		justify-content: center;
+		transform: rotate(0deg);
+		border-bottom: solid;
+		border-width: 1px;
+		background-color: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(2px);
+	}
+
+	nav {
+		transform: rotate(0deg);
+		bottom: 10px;
+		justify-content: center;
+		right: 0;
+		left: 0;
+		width: 100vw;
+		display: flex;
+		justify-content: space-around;
+		border-top: solid;
+		border-width: 1px;
+		padding-top: 10px;
+		background-color: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(2px);
+	}
+
+	nav a {
+		padding-left: 0px;
+	}
+
 }
 
 @media (max-width: 425px) {
