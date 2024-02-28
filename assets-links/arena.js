@@ -295,7 +295,7 @@ let fixingBlocksContent = () => {
 				allLis[i].classList.add('content-block-reverse') //yay apply the content-block-reverse to the current <li>
 			}
 		}
-	};
+	}
 
 // function for the "snap scroll"
 let scrollingSlideShow = () => {
@@ -360,6 +360,7 @@ let scrollingGlitch = () => {
 	let sectionGrab2 = document.querySelectorAll('h2')
 	let sectionGrab3 = document.querySelectorAll('.noise')
 	let sectionGrab4 = document.querySelectorAll('.navMenu')
+	let sectionGrab5 = document.querySelector('footer')
 
 	window.onscroll = () => {
 		sectionGrab.forEach(section => {
@@ -390,7 +391,14 @@ let scrollingGlitch = () => {
 			section.classList.remove('glitch')
 		})
 	})
-	}	
+	if (sectionGrab5) {
+        sectionGrab5.classList.add('footerGlitch')
+
+        setTimeout(() => {
+            sectionGrab5.classList.remove('footerGlitch')
+        })
+    }
+	}	// 
 }
 
 // Now that we have said what we can do, go get the data:
