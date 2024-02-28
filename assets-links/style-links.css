@@ -670,6 +670,14 @@ li.content-block {
 
 	}
 
+	.content-block {
+		align-content: center;
+	}
+	
+	.content-block-reverse {
+		align-content: center;
+	}
+
 	.content-block div {
 		padding-bottom: calc(var(--gutter) * 1);
 	}
@@ -677,6 +685,10 @@ li.content-block {
 	.headerContainer {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.text p, .text em {
+		font-size: calc(var(--font-size)* 1);
 	}
 
 	footer {
